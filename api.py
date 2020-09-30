@@ -11,13 +11,22 @@ def unhandled_exception(e):
 
 # ROUTES
 
-## GET index
-@app.route('/fighters')
+## GET index, POST new
+@app.route('/fighters', methods='GET', 'POST')
 def fighter_index_create():
-    return get_all_fighters()
+    if request.method == 'GET':
+        return get_all_fighters()
+    if request.method == 'POST':
+        return create_fighter(**request.form)
 
-## GET show
-@app.route('/fighters/<int:id>')
+## GET show, PUT update, DELTE destroy
+@app.route('/fighters/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def fighter_show_put_delete(id):
-    return get_fighter(id)
+    if request.method == 'GET':
+        return get_user(id)
+    if request.method == 'PUT':
+        return update_user(id, **request.form)
+    if request.method == 'DELETE':
+    return destroy_user(id)
+
 
