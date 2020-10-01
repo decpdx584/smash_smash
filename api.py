@@ -1,6 +1,6 @@
 from models import app, Fighter
 from flask import jsonify, request
-from crud.fighter_crud import get_all_fighters, get_fighter
+from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
 
 # ERROR HANDLER
 @app.errorhandler(Exception)
@@ -19,7 +19,7 @@ def fighter_index_create():
     if request.method == 'POST':
         return create_fighter(**request.form)
 
-## GET show, PUT update, DELTE destroy
+## GET show, PUT update, DELETE destroy
 @app.route('/fighters/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def fighter_show_put_delete(id):
     if request.method == 'GET':
