@@ -7,19 +7,10 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/smash_dev'
 db = SQLAlchemy(app)
 
-class User(db.Model):
-    __tablename__ = 'users'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    email = db.Column(db.String, unique=True, nullable=False)
-    bio = db.Column(db.String(150))
-
-    def __repr__(self):
-        return f'User(id={self.id}, name="{self.name}", email="{self.email}")'
-
-    def as_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+date_args = db.Table('date_args',
+    db.Column('date_id', db.Integer, db.ForeighKey('date_id'), primary_key=True),
+    db.Column('argument_id', db.Integer, db.ForeighKey('argument_id'), primary_key=True)
+)
 
 class Fighter(db.Model):
     __tablename__ = 'fighters'
@@ -37,3 +28,29 @@ class Fighter(db.Model):
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+class Date(db.Model):
+    __tablename__ = 'dates'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    bio = db.Column(db.String(150))
+
+    fighter_one = db.relationship('Fighter', backref='single', lazy=True)
+    fighter_two = db.relationship('Fighter', backref='single', lazy=True)
+    arguments = db.relationship('Argument', backref='date', lazy=True)
+
+    def __repr__(self):
+        return f'Date(id={self.id}, name="{self.name}", email="{self.email}")'
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+class Argument(db.Model):
+    __tablename__ = 'arguments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String(50))
+    body = db.Column(db.String, nullable=False)
+    date_id = db.Column(db.Integer, db.ForeignKey('date_id'), nullable=False)
