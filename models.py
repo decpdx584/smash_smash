@@ -30,9 +30,10 @@ class Fighter(db.Model):
     availability = db.Column(db.String)
     final_smash = db.Column(db.String)
     attributes = db.Column(db.String)
+    wiki_url = db.Column(db.String)
 
     def __repr__(self):
-        return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", attributes="{self.attributes}")'
+        return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", attributes="{self.attributes}", wiki_url="{self.wiki_url}")'
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
