@@ -29,7 +29,7 @@ class Fighter(db.Model):
     universe = db.Column(db.String, nullable=False)
     availability = db.Column(db.String)
     final_smash = db.Column(db.String)
-    attributes = db.Column(db.String)
+    quote = db.Column(db.String)
     wiki_url = db.Column(db.String)
 
     def __repr__(self):
