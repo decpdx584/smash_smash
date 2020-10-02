@@ -22,6 +22,7 @@ class Fighter(db.Model):
     final_smash = db.Column(db.String)
     quote = db.Column(db.String)
     wiki_url = db.Column(db.String)
+    dates = db.relationship('Date', backref='fighter', lazy=True)
 
     def __repr__(self):
         return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", attributes="{self.attributes}", wiki_url="{self.wiki_url}")'
