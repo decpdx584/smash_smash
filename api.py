@@ -1,7 +1,8 @@
 from models import app, Fighter_one, Fighter_two
 from flask import jsonify, request
-# from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
-from crud.fighter_crud import create_fighter
+from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
+# from crud.fighter_crud import create_fighter
+
 # ERROR HANDLER
 @app.errorhandler(Exception)
 def unhandled_exception(e):
