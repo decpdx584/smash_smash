@@ -8,8 +8,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/smash_dev'
 db = SQLAlchemy(app)
 
 date_args = db.Table('date_args',
-    db.Column('date_id', db.Integer, db.ForeighKey('date_id'), primary_key=True),
-    db.Column('argument_id', db.Integer, db.ForeighKey('argument_id'), primary_key=True)
+    db.Column('date_id', db.Integer, db.ForeignKey('date_id'), primary_key=True),
+    db.Column('argument_id', db.Integer, db.ForeignKey('argument_id'), primary_key=True)
 )
 
 class Fighter(db.Model):
