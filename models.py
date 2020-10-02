@@ -12,8 +12,8 @@ db = SQLAlchemy(app)
 #     db.Column('date_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
 # )
 
-class Fighter(db.Model):
-    __tablename__ = 'fighters'
+class Fighter_one(db.Model):
+    __tablename__ = 'fighters_one'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -23,10 +23,29 @@ class Fighter(db.Model):
     quote = db.Column(db.String)
     wiki_url = db.Column(db.String)
 
-    dates = db.relationship('Date', backref='fighter', lazy=True)
+    dates = db.relationship('Date', backref='fighter_one', lazy=True)
 
     def __repr__(self):
-        return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", attributes="{self.attributes}", wiki_url="{self.wiki_url}")'
+        return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", quote="{self.quote}", wiki_url="{self.wiki_url}")'
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+class Fighter_two(db.Model):
+    __tablename__ = 'fighters_two'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    universe = db.Column(db.String, nullable=False)
+    availability = db.Column(db.String)
+    final_smash = db.Column(db.String)
+    quote = db.Column(db.String)
+    wiki_url = db.Column(db.String)
+
+    dates = db.relationship('Date', backref='fighter_two', lazy=True)
+
+    def __repr__(self):
+        return f'Fighter(id={self.id}, name="{self.name}", universe="{self.universe}", availability="{self.availability}", final_smash="{self.final_smash}", quote="{self.quote}", wiki_url="{self.wiki_url}")'
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
@@ -40,8 +59,8 @@ class Date(db.Model):
     __tablename__ = 'dates'
 
     id = db.Column(db.Integer, primary_key=True)
-    fighter_one = db.Column(db.Integer, db.ForeignKey('fighters.id', ondelete='SET NULL'), nullable=False)
-    fighter_two = db.Column(db.Integer, db.ForeignKey('fighters.id', ondelete='SET NULL'), nullable=False)
+    fighter_one_id = db.Column(db.Integer, db.ForeignKey('fighters_one.id', ondelete='SET NULL'), nullable=False)
+    fighter_two_id = db.Column(db.Integer, db.ForeignKey('fighters_two.id', ondelete='SET NULL'), nullable=False)
 
     arguments = db.relationship('Argument', backref='date', lazy=True)
 
