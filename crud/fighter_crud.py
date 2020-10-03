@@ -1,5 +1,6 @@
-from flask import jsonify, redirect
-from models import db, Fighter_one, Fighter_two
+from flask import Flask, jsonify, redirect
+from flask_sqlalchemy import SQLAlchemy
+from models import db, app, Fighter_one, Fighter_two
 
 # GET all
 def get_all_fighters():
@@ -11,7 +12,7 @@ def get_all_fighters():
 def get_fighter(id):
     fighter = Fighter_one.query.get(id)
     if fighter:
-        return jsonify(fighter_one.as_dict())
+        return jsonify(fighter.as_dict())
     else:
         raise Exception('Sorry, could not find fighter at {}🤷‍♂️'.format(id))
 
@@ -22,7 +23,7 @@ def create_fighter(**form_kwargs):
     db.session.add(new_fighter1)
     db.session.add(new_fighter2)
     db.session.commit()
-    print(f'{new_fighter1} successfully created!🎉', jsonify(new_fighter1.as_dict()), jsonify(new_fighter2.as_dict()))
+    print(f'{new_fighter1} successfully created!🎉')
 
 # PUT
 def update_fighter(id, **update_values):

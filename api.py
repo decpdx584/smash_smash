@@ -1,7 +1,9 @@
 from models import app, Fighter_one, Fighter_two
-from flask import jsonify, request
+from flask import Flask, jsonify, request, g, redirect, url_for, render_template
+from flask_sqlalchemy import SQLAlchemy
 from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
-# from crud.fighter_crud import create_fighter
+
+
 
 # ERROR HANDLER
 @app.errorhandler(Exception)
@@ -9,6 +11,11 @@ def unhandled_exception(e):
     app.logger.error('Unhandled Exception %s', (e))
     message_str = e.__str__()
     return jsonify(message=message_str.split(':')[0])
+
+# VIEWS
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 # ROUTES
 
@@ -29,3 +36,5 @@ def fighter_show_put_delete(id):
         return update_user(id, **request.form)
     if request.method == 'DELETE':
         return destroy_user(id)
+
+
