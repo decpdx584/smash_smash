@@ -84,3 +84,7 @@ with app.app_context():
 
         def as_dict(self):
             return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

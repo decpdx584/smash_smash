@@ -1,4 +1,4 @@
-from models import app, Fighter_one, Fighter_two
+from models import db, app, Fighter_one, Fighter_two
 from flask import Flask, jsonify, request, g, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
@@ -16,6 +16,10 @@ def unhandled_exception(e):
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route('/singles')
+def fighters_show():
+    return 
 
 # ROUTES
 
@@ -36,5 +40,3 @@ def fighter_show_put_delete(id):
         return update_user(id, **request.form)
     if request.method == 'DELETE':
         return destroy_user(id)
-
-
