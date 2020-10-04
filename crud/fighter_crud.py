@@ -5,8 +5,9 @@ from models import db, app, Fighter_one, Fighter_two
 # GET all
 def get_all_fighters():
     all_fighters = Fighter_one.query.all()
-    results = [fighter_one.as_dict() for fighter in all_fighters]
-    return jsonify(results)
+    # results = [all_fighters.as_dict() for fighter in all_fighters]
+    # return jsonify(all_fighters)
+    return all_fighters
 
 # GET one
 def get_fighter(id):

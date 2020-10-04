@@ -1,9 +1,7 @@
-from models import db, app, Fighter_one, Fighter_two
+from models import db, app, Fighter_one, Fighter_two, Date, Argument
 from flask import Flask, jsonify, request, g, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from crud.fighter_crud import get_all_fighters, get_fighter, create_fighter, update_fighter, destroy_fighter
-
-
 
 # ERROR HANDLER
 @app.errorhandler(Exception)
@@ -12,22 +10,18 @@ def unhandled_exception(e):
     message_str = e.__str__()
     return jsonify(message=message_str.split(':')[0])
 
-# VIEWS
+
+# ROUTES
+
 @app.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/singles')
-def fighters_show():
-    return 
-
-# ROUTES
-
 ## GET index, POST new
-@app.route('/fighters', methods=['GET', 'POST'])
+@app.route('/singles', methods=['GET', 'POST'])
 def fighter_index_create():
     if request.method == 'GET':
-        return get_all_fighters()
+        return render_template('singles/singles.html', singles=get_all_fighters())
     if request.method == 'POST':
         return create_fighter(**request.form)
 

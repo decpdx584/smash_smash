@@ -7,11 +7,6 @@ app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/smash_dev'
 db = SQLAlchemy(app)
 
-# fighter_dates = db.Table('fighter_dates',
-#     db.Column('fighter_id', db.Integer, db.ForeignKey('fighters.id'), primary_key=True)
-#     db.Column('date_id', db.Integer, db.ForeignKey('dates.id'), primary_key=True),
-# )
-
 with app.app_context():
     class Fighter_one(db.Model):
         __tablename__ = 'fighters_one'
@@ -87,4 +82,4 @@ with app.app_context():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

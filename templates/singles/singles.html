@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Bachelors/Bachelorettes{% endblock %}
+{% block content %}
+    {% for single in singles %}
+        <h1>Name: {{single.name}}</h1>
+        <h2>who hails from {{single.universe}}</h2>
+    {% endfor %}
+{% endblock %}
