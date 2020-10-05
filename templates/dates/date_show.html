@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{date.fighter_one.name}} - {{date.fighter_two.name}}{% endblock %}
 {% block content %}
-    {% if date: %}
-        {% for args in argument: %}
-            <h3>{{date.argument.author}} says:</h3>
-            <p>{{date.argument.body}}</p>
+    {% if date.arguments: %}
+        {% for arg in date.arguments: %}
+            <h3>{{arg.author}} says: "{{arg.body}}"</h3>
         {% endfor %}
+    {% else: %}
+        <h3>Let's discuss! How's this gonna go?</h3>
     {% endif %}
 {% endblock %}

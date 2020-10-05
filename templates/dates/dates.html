@@ -4,6 +4,6 @@
     {% for date in dates %}
         <h1>First Single: {{date.fighter_one.name}}</h1>
         <h1>Second Single: {{date.fighter_two.name}}</h1>
-            <p><a href="dates/date_show/{{date.id}}">Weigh in on this match!</a></p>
+            <p><a href="dates/{{date.id}}">Weigh in on this match!</a></p>
     {% endfor %}
 {% endblock %}
