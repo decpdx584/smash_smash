@@ -21,16 +21,16 @@ def home():
 @app.route('/singles', methods=['GET', 'POST'])
 def fighter_index_create():
     if request.method == 'GET':
-        return render_template('singles/singles.html', singles=get_all_fighters())
+        return render_template('singles/singles.html', singles = get_all_fighters())
     if request.method == 'POST':
         return create_fighter(**request.form)
 
 ## GET show, PUT update, DELETE destroy
-@app.route('/fighters/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/singles/<int:id>')
 def fighter_show_put_delete(id):
-    if request.method == 'GET':
-        return get_user(id)
-    if request.method == 'PUT':
-        return update_user(id, **request.form)
-    if request.method == 'DELETE':
-        return destroy_user(id)
+    return render_template('singles/single_show.html', single = get_fighter(id))
+    # if request.method == 'GET':
+    # if request.method == 'PUT':
+    #     return update_user(id, **request.form)
+    # if request.method == 'DELETE':
+    #     return destroy_user(id)

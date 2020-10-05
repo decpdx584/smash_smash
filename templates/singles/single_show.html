@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{single.name}}{% endblock %}
+{% block content %}
+    {% if single: %}
+        <h2>Universe: {{single.universe}}</h2>
+        <h2>In-game Availability: {{single.availability}}</h2>
+        <h2>Final Smash: {{single.final_smash}}</h2>
+        <h2>What the official site has to say about them:</h2>
+            <p>{{single.quote}}</p>
+        <h4>for more info on {{single.name}} go to <a href="{{single.wiki_url}}">{{single.name}}</a></h4>
+    {% endif %}
+{% endblock %}

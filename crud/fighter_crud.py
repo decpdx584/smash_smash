@@ -13,7 +13,8 @@ def get_all_fighters():
 def get_fighter(id):
     fighter = Fighter_one.query.get(id)
     if fighter:
-        return jsonify(fighter.as_dict())
+        # return jsonify(fighter.as_dict())
+        return fighter
     else:
         raise Exception('Sorry, could not find fighter at {}🤷‍♂️'.format(id))
 
