@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Let's get some Smash Bros. Smashin'!{% endblock%}
+{% block content%}
+    <h2>Choose two of these fighters looking for love to set up on a date:</h2>
+    <form>
+        {% for single in singles: %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">
+                    {{single.name}}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="button submit" class="btn btn-primary btn-lg" action="POST">SMUSH 'EM</button>
+    </form>
+{% endblock %}

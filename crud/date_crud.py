@@ -16,5 +16,10 @@ def get_date(id):
         raise Exception('Sorry, could not find date at {}🤷‍♂️'.format(id))
 
 # POST
+def create_date(**form_kwargs):
+    new_date = Date(**form_kwargs)
+    db.session.add(new_date)
+    db.session.commit()
+    print(f'{new_date} successfully created!🌈')
 
 # DELETE
