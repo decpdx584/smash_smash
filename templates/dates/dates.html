@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Blind Dates{% endblock %}
+{% block title %}Dates{% endblock %}
 {% block content %}
+    <h1>Proposed Blind Dates</h1>
     {% for date in dates %}
         <h1>First Single: {{date.fighter_one.name}}</h1>
         <h1>Second Single: {{date.fighter_two.name}}</h1>

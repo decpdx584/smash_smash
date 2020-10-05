@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}{{date.fighter_one.name}} - {{date.fighter_two.name}}{% endblock %}
 {% block content %}
+    <h1>{{date.fighter_one.name}} - {{date.fighter_two.name}}</h1>
+    </br>
+    </br>
+    </br>
     {% if date.arguments: %}
         {% for arg in date.arguments: %}
             <h3>{{arg.author}} says: "{{arg.body}}"</h3>
