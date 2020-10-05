@@ -41,15 +41,14 @@ def date_index():
     return render_template('dates/dates.html', dates = get_all_dates())
 
 ### POST new date form
-@app.route('/match')
+@app.route('/match', methods = ['GET', 'POST'])
 def date_create():
     if request.form:
-        new_date = Date(
-            fighter_one_id=request.form.get('single1'),
-            fighter_two_id=request.form.get('single2')
+        create_date (
+            fighter_one_id=request.form.get(single1),
+            fighter_two_id=request.form.get(single2)
         )
-        db.session.add(new_date)
-        db.session.commit()
+        return redirect('/dates')
     return render_template('match.html', singles = get_all_fighters())
 
 ## GET show, PUT update, DELETE destroy
