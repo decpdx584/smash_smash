@@ -6,15 +6,22 @@
     </br>
     </br>
     <h2>Choose two of these fighters looking for love to set up on a date:</h2>
-    <form>
-        {% for single in singles: %}
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                    {{single.name}}
-                </label>
-            </div>
-        {% endfor %}
-        <button type="button submit" class="btn btn-primary btn-lg" action="POST">SMUSH 'EM</button>
+    <form class="form-inline">
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">New Setup</label>
+        <select class="custom-select my-1 mr-sm-2" name="single1" id="inlineFormCustomSelectPref">
+            <option selected>First Single</option>
+                {% for single in singles: %}
+                    <option value="{{single.id}}">{{single.name}}</option>
+                {% endfor %}
+        </select>
+
+        <select class="custom-select my-1 mr-sm-2" name="single2" id="inlineFormCustomSelectPref">
+            <option selected>Second Single</option>
+                {% for single in singles: %}
+                    <option value="{{single.id}}">{{single.name}}</option>
+                {% endfor %}
+        </select>
+
+        <button type="submit" class="btn btn-primary my-1">SMUSH 'EM</button>
     </form>
 {% endblock %}

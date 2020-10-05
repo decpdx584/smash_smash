@@ -43,6 +43,13 @@ def date_index():
 ### POST new date form
 @app.route('/match')
 def date_create():
+    if request.form:
+        new_date = Date(
+            fighter_one_id=request.form.get('single1'),
+            fighter_two_id=request.form.get('single2')
+        )
+        db.session.add(new_date)
+        db.session.commit()
     return render_template('match.html', singles = get_all_fighters())
 
 ## GET show, PUT update, DELETE destroy
