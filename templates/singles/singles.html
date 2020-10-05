@@ -5,10 +5,14 @@
         </br>
         </br>
         </br>
-        {% for single in singles %}
-            <h1><a href="singles/{{single.id}}">{{single.name}}</a></h1>
-            <h2>from the {{single.universe}} universe.</h2>
-            </br>
-            </br>
-        {% endfor %}
+        {% if singles: %}
+            {% for single in singles %}
+                <h1><a href="singles/{{single.id}}">{{single.name}}</a></h1>
+                <h2>from the {{single.universe}} universe.</h2>
+                </br>
+                </br>
+            {% endfor %}
+        {% else: %}
+            <h1>Let's find some singles!</h1>
+        {% endif %}
 {% endblock %}
